@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend-cnsec
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@cloud_high?TNS_ADMIN=/wallet
+      SPRING_DATASOURCE_USERNAME: ADMIN
+      SPRING_DATASOURCE_PASSWORD: Jepzzebel1234.
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: oracle.jdbc.OracleDriver
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: TU_ACCESS_KEY
+      AWS_SECRET_ACCESS_KEY: TU_SECRET_KEY
+      BUCKET_NAME: facturas-app-2025
+    volumes:
+      - "C:/Users/Duby/Downloads/Wallet_CLOUD:/wallet"
+    command: >
+      sh -c "echo 'Iniciando backend...';
+             java -jar app.jar"
